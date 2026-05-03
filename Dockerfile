@@ -35,14 +35,14 @@ RUN mkdir -p /opt/gradle && \
     rm /tmp/gradle-8.5-bin.zip
 ENV PATH=$PATH:/opt/gradle/gradle-8.5/bin
 
-# Install Latest Java 21, 23 & Java 25
+# Install Latest Java 21, 23 & Java 25 from Adoptium (Temurin)
 RUN mkdir -p /opt/java && \
-    wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz -O /tmp/jdk21.tar.gz && \
-    tar -xzf /tmp/jdk21.tar.gz -C /opt/java && \
-    wget https://download.oracle.com/java/23/latest/jdk-23_linux-x64_bin.tar.gz -O /tmp/jdk23.tar.gz && \
-    tar -xzf /tmp/jdk23.tar.gz -C /opt/java && \
-    wget https://download.oracle.com/java/25/latest/jdk-25_linux-x64_bin.tar.gz -O /tmp/jdk25.tar.gz && \
-    tar -xzf /tmp/jdk25.tar.gz -C /opt/java && \
+    curl -L "https://api.adoptium.net/v3/binary/latest/21/ga/linux/x64/jdk/hotspot/normal/eclipse?project=jdk" -o /tmp/jdk21.tar.gz && \
+    mkdir -p /opt/java/jdk-21 && tar -xzf /tmp/jdk21.tar.gz -C /opt/java/jdk-21 --strip-components=1 && \
+    curl -L "https://api.adoptium.net/v3/binary/latest/23/ga/linux/x64/jdk/hotspot/normal/eclipse?project=jdk" -o /tmp/jdk23.tar.gz && \
+    mkdir -p /opt/java/jdk-23 && tar -xzf /tmp/jdk23.tar.gz -C /opt/java/jdk-23 --strip-components=1 && \
+    curl -L "https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse?project=jdk" -o /tmp/jdk25.tar.gz && \
+    mkdir -p /opt/java/jdk-25 && tar -xzf /tmp/jdk25.tar.gz -C /opt/java/jdk-25 --strip-components=1 && \
     rm /tmp/*.tar.gz
 
 # Set up Pterodactyl User

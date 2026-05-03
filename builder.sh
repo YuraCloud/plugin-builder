@@ -21,9 +21,9 @@ update_java_env() {
         "8")  export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" ;;
         "11") export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64" ;;
         "17") export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64" ;;
-        "21") export JAVA_HOME=$(ls -d /opt/java/jdk-21* 2>/dev/null | head -n 1) ;;
-        "23") export JAVA_HOME=$(ls -d /opt/java/jdk-23* 2>/dev/null | head -n 1) ;;
-        "25") export JAVA_HOME=$(ls -d /opt/java/jdk-25* 2>/dev/null | head -n 1) ;;
+        "21") export JAVA_HOME="/opt/java/jdk-21" ;;
+        "23") export JAVA_HOME="/opt/java/jdk-23" ;;
+        "25") export JAVA_HOME="/opt/java/jdk-25" ;;
         *)    export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64" ;;
     esac
     

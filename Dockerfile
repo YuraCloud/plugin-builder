@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL author="Antigravity" maintainer="antigravity@gemini.ai"
+LABEL author="Antigravity" maintainer="dapaupau@sigaul.com"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     software-properties-common
 
 # Add OpenJDK PPA and install standard versions
-RUN add-apt-repository ppa:openjdk-r/ppa && apt-get update
+RUN add-apt-repository -y ppa:openjdk-r/ppa && apt-get update
 RUN apt-get install -y \
     openjdk-8-jdk \
     openjdk-11-jdk \

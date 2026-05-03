@@ -6,7 +6,7 @@
     },
     "exported_at": "2024-06-02T14:43:56+00:00",
     "name": "Plugin Builder (Universal Pro)",
-    "author": "antigravity@gemini.ai",
+    "author": "dapaupau@sigaul.com",
     "description": "Pro-tier Java Plugin Builder egg. Optimized for multi-version building (Java 8-25), auto-detecting Maven/Gradle, and structured workspace management.",
     "features": null,
     "docker_images": {

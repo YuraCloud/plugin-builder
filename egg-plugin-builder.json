@@ -1,0 +1,52 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-06-02T14:43:56+00:00",
+    "name": "Plugin Builder (Universal Pro)",
+    "author": "antigravity@gemini.ai",
+    "description": "Pro-tier Java Plugin Builder egg. Optimized for multi-version building (Java 8-25), auto-detecting Maven/Gradle, and structured workspace management.",
+    "features": null,
+    "docker_images": {
+        "ghcr.io/yuracloud/plugin-builder:latest": "ghcr.io/yuracloud/plugin-builder:latest"
+    },
+    "file_denylist": [],
+    "startup": "if [ \"${AUTO_UPDATE}\" == \"1\" ]; then curl -s -o builder.sh https://raw.githubusercontent.com/YuraCloud/plugin-builder/main/builder.sh && chmod +x builder.sh; fi; bash builder.sh",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Option Selection >\"\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "container": "ubuntu:22.04",
+            "entrypoint": "bash",
+            "script": "#!/bin/bash\n# --- Create Workspace Structure ---\nmkdir -p /mnt/server/files/file\nmkdir -p /mnt/server/files/hasil\nmkdir -p /mnt/server/logs\n\ncd /mnt/server\n\n# --- Download Builder Script ---\ncurl -s -o builder.sh https://raw.githubusercontent.com/YuraCloud/plugin-builder/main/builder.sh\nchmod +x builder.sh\n\n# --- Branding and Information ---\necho \"\"\necho \"==================================================\"\necho \"               PLUGIN BUILDER PRO                 \"\necho \"==================================================\"\necho \"Informasi Server:\"\necho \"UUID      : ${P_SERVER_UUID}\"\necho \"Port      : ${SERVER_PORT}\"\necho \"Egg Type  : Java Plugin Builder\"\necho \"Version   : 1.0.0\"\necho \"==================================================\"\necho \"    Sistem Build Plugin Otomatis Terpasang!       \"\necho \"==================================================\"\necho \"\""
+        }
+    },
+    "variables": [
+        {
+            "name": "Default Java Version",
+            "description": "The initial Java version to use (8, 11, 17, 21, 23, 25).",
+            "env_variable": "CURRENT_JAVA",
+            "default_value": "17",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:2",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update Script",
+            "description": "Update the builder.sh script on every startup.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        }
+    ]
+}

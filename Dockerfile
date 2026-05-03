@@ -51,7 +51,10 @@ USER container
 ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
-# Environment variables for builder
-ENV CURRENT_JAVA=17
+# Finalize
+COPY ./builder.sh /home/container/builder.sh
+USER root
+RUN chmod +x /home/container/builder.sh && chown container:container /home/container/builder.sh
+USER container
 
-CMD ["/bin/bash", "/builder.sh"]
+CMD ["/bin/bash", "/home/container/builder.sh"]
